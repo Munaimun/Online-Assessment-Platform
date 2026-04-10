@@ -155,7 +155,7 @@ npm run build
 
 ## Deliverables Checklist
 
-- GitHub repository with full code: https://github.com/Munaimun/Online-Assessment-Platform
+- GitHub repository with full code: add your new repository URL here
 - README with setup instructions: Included in this file.
 - Completed answers to additional questions: Included in this file.
 - Live demo link: https://online-assessment-platform-six.vercel.app/
