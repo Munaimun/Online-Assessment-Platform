@@ -66,7 +66,7 @@ export default function CandidateDashboardPage() {
           ))}
         </section>
 
-        <div className="flex items-center justify-between text-[20px] text-[#7b8494]">
+        {/* <div className="flex items-center justify-between text-[20px] text-[#7b8494]">
           <div className="inline-flex items-center gap-4">
             <button type="button" className="h-8 w-8 rounded-lg border border-[#e4e8ef] bg-white">
               &lt;
@@ -82,7 +82,7 @@ export default function CandidateDashboardPage() {
               8
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
     </EmployerShell>
   );
