@@ -155,10 +155,10 @@ npm run build
 
 ## Deliverables Checklist
 
-- GitHub repository with full code: add your new repository URL here
+- GitHub repository with the project code: https://github.com/Munaimun/Online-Assessment-Platform
 - README with setup instructions: Included in this file.
-- Completed answers to additional questions: Included in this file.
-- Live demo link: https://online-assessment-platform-six.vercel.app/
-- Video recording link: TODO - add your video recording URL
-- Bonus backend/API integration: Implemented via Next.js API routes and in-memory mock DB.
+- Completed answers to the additional questions in the README: Included in this file.
+- Live demo link in the README: https://online-assessment-platform-six.vercel.app/
+- Video recording of the app and link shared in the README: https://screenapp.io/app/v/zCu16-AAmw
+- Bonus points for implementing backend/API integration: Implemented using Next.js API route handlers with mock backend logic.
 
