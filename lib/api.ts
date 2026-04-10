@@ -25,7 +25,7 @@ export async function fetchExams(panel: "employer" | "candidate", candidateEmail
 }
 
 export async function fetchExamById(examId: string) {
-  const { data } = await apiClient.get<Exam>(`/exams/${examId}`);
+  const { data } = await apiClient.get<Exam | null>(`/exams/${examId}`);
   return data;
 }
 

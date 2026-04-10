@@ -10,7 +10,7 @@ export async function GET(_request: Request, context: RouteContext) {
   const exam = getExamById(params.examId);
 
   if (!exam) {
-    return NextResponse.json({ message: "Exam not found" }, { status: 404 });
+    return NextResponse.json(null, { status: 200 });
   }
 
   return NextResponse.json(exam);
