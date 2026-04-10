@@ -37,49 +37,58 @@ export default function CandidateDashboardPage() {
               <Search size={16} />
             </span>
           </div>
-        </div>
+            {query.isLoading ? (
+              <section className="grid gap-4 md:grid-cols-2">
+                {[0, 1].map((item) => (
+                  <article key={item} className="animate-pulse rounded-2xl border border-[#e7e9ee] bg-white p-5">
+                    <div className="h-7 w-2/3 rounded bg-[#e8ebf2]" />
+                    <div className="mt-4 grid grid-cols-3 gap-2">
+                      <div className="h-5 rounded bg-[#eef1f6]" />
+                      <div className="h-5 rounded bg-[#eef1f6]" />
+                      <div className="h-5 rounded bg-[#eef1f6]" />
+                    </div>
+                    <div className="mt-5 h-10 w-28 rounded-xl bg-[#ece8ff]" />
+                  </article>
+                ))}
+              </section>
+            ) : query.isError ? (
+              <section className="rounded-2xl border border-[#e7e9ee] bg-white px-6 py-12 text-center">
+                <h2 className="text-2xl font-semibold text-[#364153]">Unable to load tests</h2>
+                <p className="mt-2 text-sm text-[#6d7483]">Please refresh the page or try again in a moment.</p>
+              </section>
+            ) : exams.length === 0 ? (
+              <section className="rounded-2xl border border-[#e7e9ee] bg-white px-6 py-12 text-center">
+                <h2 className="text-2xl font-semibold text-[#364153]">No tests available</h2>
+                <p className="mt-2 text-sm text-[#6d7483]">You do not have any assigned online tests right now.</p>
+              </section>
+            ) : (
+              <section className="grid gap-4 md:grid-cols-2">
+                {exams.map((exam) => (
+                  <article key={exam.id} className="rounded-2xl border border-[#e7e9ee] bg-white p-5">
+                    <h2 className="text-2xl font-semibold leading-tight text-[#364153]">{exam.title}</h2>
 
-        <section className="grid gap-4 md:grid-cols-2">
-          {exams.map((exam) => (
-            <article key={exam.id} className="rounded-2xl border border-[#e7e9ee] bg-white p-5">
-              <h2 className="text-2xl font-semibold leading-tight text-[#364153]">{exam.title}</h2>
+                    <div className="mt-4 grid grid-cols-3 gap-2 text-[#637089]">
+                      <p className="inline-flex items-center gap-2 text-base">
+                        <Clock3 size={16} /> Duration: <span className="font-semibold">{exam.duration} min</span>
+                      </p>
+                      <p className="inline-flex items-center gap-2 text-base">
+                        <FileText size={16} /> Question: <span className="font-semibold">{exam.questions.length}</span>
+                      </p>
+                      <p className="inline-flex items-center gap-2 text-base">
+                        <CircleX size={16} /> Negative Marking: <span className="font-semibold">-{exam.negativeMarking}/wrong</span>
+                      </p>
+                    </div>
 
-              <div className="mt-4 grid grid-cols-3 gap-2 text-[#637089]">
-                <p className="inline-flex items-center gap-2 text-base">
-                  <Clock3 size={16} /> Duration: <span className="font-semibold">{exam.duration} min</span>
-                </p>
-                <p className="inline-flex items-center gap-2 text-base">
-                  <FileText size={16} /> Question: <span className="font-semibold">{exam.questions.length}</span>
-                </p>
-                <p className="inline-flex items-center gap-2 text-base">
-                  <CircleX size={16} /> Negative Marking: <span className="font-semibold">-{exam.negativeMarking}/wrong</span>
-                </p>
-              </div>
-
-              <Link
-                href={`/candidate/exam/${exam.id}`}
-                className="mt-5 inline-flex h-10.5 min-w-28 items-center justify-center rounded-xl border border-[#6a41f5] px-5 text-base font-semibold text-[#6a41f5]"
-              >
-                Start
-              </Link>
-            </article>
-          ))}
-        </section>
-
-        {/* <div className="flex items-center justify-between text-[20px] text-[#7b8494]">
-          <div className="inline-flex items-center gap-4">
-            <button type="button" className="h-8 w-8 rounded-lg border border-[#e4e8ef] bg-white">
-              &lt;
-            </button>
-            <span>1</span>
-            <button type="button" className="h-8 w-8 rounded-lg border border-[#e4e8ef] bg-white">
-              &gt;
-            </button>
-          </div>
-          <div className="inline-flex items-center gap-3">
-            <span>Online Test Per Page</span>
-            <button type="button" className="rounded-lg border border-[#e4e8ef] bg-white px-3 py-1 text-[18px]">
-              8
+                    <Link
+                      href={`/candidate/exam/${exam.id}`}
+                      className="mt-5 inline-flex h-10.5 min-w-28 items-center justify-center rounded-xl border border-[#6a41f5] px-5 text-base font-semibold text-[#6a41f5]"
+                    >
+                      Start
+                    </Link>
+                  </article>
+                ))}
+              </section>
+            )}
             </button>
           </div>
         </div> */}

@@ -37,6 +37,7 @@ export default function CandidateExamPage() {
   const query = useQuery({
     queryKey: ["exam", examId],
     queryFn: () => fetchExamById(examId),
+    retry: false,
   });
 
   const timedOutRef = useRef(false);
@@ -83,6 +84,8 @@ export default function CandidateExamPage() {
   const questions = query.data?.questions ?? [];
   const currentQuestion = questions[index];
 
+  const statusCode = (query.error as { response?: { status?: number } } | undefined)?.response?.status;
+
   const formattedTime = useMemo(() => {
     const parts = timer.formatted.split(":");
     if (parts.length !== 2) {
@@ -92,10 +95,62 @@ export default function CandidateExamPage() {
     return `${parts[0]}:${parts[1]} left`;
   }, [timer.formatted]);
 
-  if (query.isLoading || !query.data || !currentQuestion) {
+  if (query.isLoading) {
     return (
       <CandidateTestShell centerTitle="Akij Resource">
-        <p className="text-sm text-[#5b6677]">Loading exam...</p>
+        <div className="space-y-4">
+          <div className="h-16 animate-pulse rounded-2xl bg-white" />
+          <div className="h-[28rem] animate-pulse rounded-2xl bg-white" />
+        </div>
+      </CandidateTestShell>
+    );
+  }
+
+  if (query.isError || !query.data) {
+    return (
+      <CandidateTestShell centerTitle="Akij Resource">
+        <div className="mx-auto max-w-2xl rounded-2xl border border-[#dbe0e9] bg-white p-8 text-center">
+          <h2 className="text-2xl font-semibold text-[#344154]">
+            {statusCode === 404 ? "Exam not available" : "Unable to load exam"}
+          </h2>
+          <p className="mt-2 text-sm text-[#5b6677]">
+            {statusCode === 404
+              ? "This exam was not found or is no longer available. Please go back to the dashboard."
+              : "Something went wrong while loading the exam. Please try again."}
+          </p>
+          <div className="mt-6 flex justify-center gap-3">
+            <button
+              type="button"
+              onClick={() => query.refetch()}
+              className="inline-flex h-10 items-center justify-center rounded-xl border border-[#d3d9e4] px-5 text-sm font-semibold text-[#344154]"
+            >
+              Retry
+            </button>
+            <Link
+              href="/candidate/dashboard"
+              className="inline-flex h-10 items-center justify-center rounded-xl bg-linear-to-r from-[#5d2ff0] to-[#6f3bf7] px-5 text-sm font-semibold text-white"
+            >
+              Back to Dashboard
+            </Link>
+          </div>
+        </div>
+      </CandidateTestShell>
+    );
+  }
+
+  if (!currentQuestion) {
+    return (
+      <CandidateTestShell centerTitle="Akij Resource">
+        <div className="mx-auto max-w-2xl rounded-2xl border border-[#dbe0e9] bg-white p-8 text-center">
+          <h2 className="text-2xl font-semibold text-[#344154]">No questions found</h2>
+          <p className="mt-2 text-sm text-[#5b6677]">This exam is empty right now. Please contact support or return to the dashboard.</p>
+          <Link
+            href="/candidate/dashboard"
+            className="mt-6 inline-flex h-10 items-center justify-center rounded-xl bg-linear-to-r from-[#5d2ff0] to-[#6f3bf7] px-5 text-sm font-semibold text-white"
+          >
+            Back to Dashboard
+          </Link>
+        </div>
       </CandidateTestShell>
     );
   }
