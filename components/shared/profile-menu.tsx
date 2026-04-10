@@ -11,12 +11,11 @@ interface ProfileMenuProps {
 }
 
 export function ProfileMenu({ name, refId, compact = false }: ProfileMenuProps) {
-  const router = useRouter();
   const logout = useAuthStore((state) => state.logout);
 
   const onLogout = () => {
     logout();
-    router.replace("/");
+    window.location.replace("/");
   };
 
   return (
