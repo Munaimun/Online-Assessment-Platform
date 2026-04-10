@@ -42,6 +42,27 @@ function upsertLocalExam(exam: Exam) {
   writeLocalExams(next);
 }
 
+function getLocalSubmitResult(exam: Exam, payload: SubmitExamPayload): SubmitExamResponse {
+  const total = exam.questions.length;
+  const answeredCount = Object.values(payload.answers).filter((value) => {
+    if (Array.isArray(value)) {
+      return value.length > 0;
+    }
+
+    return value.trim().length > 0;
+  }).length;
+
+  const warnings = payload.behaviorEvents.length;
+  const score = Number(Math.max(answeredCount - warnings * exam.negativeMarking, 0).toFixed(2));
+
+  return {
+    score,
+    total,
+    warnings,
+    message: "Exam submitted successfully",
+  };
+}
+
 export async function login(payload: LoginPayload) {
   const { data } = await apiClient.post<LoginResponse>("/auth/login", payload);
   return data;
@@ -96,6 +117,15 @@ export async function createOnlineTest(payload: CreateExamPayload) {
 }
 
 export async function submitOnlineExam(examId: string, payload: SubmitExamPayload) {
-  const { data } = await apiClient.post<SubmitExamResponse>(`/exams/${examId}/submit`, payload);
-  return data;
+  try {
+    const { data } = await apiClient.post<SubmitExamResponse>(`/exams/${examId}/submit`, payload);
+    return data;
+  } catch {
+    const localExam = readLocalExams().find((exam) => exam.id === examId);
+    if (!localExam) {
+      throw new Error("Failed to submit exam.");
+    }
+
+    return getLocalSubmitResult(localExam, payload);
+  }
 }
