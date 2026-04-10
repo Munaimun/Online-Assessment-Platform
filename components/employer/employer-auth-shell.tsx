@@ -1,4 +1,5 @@
 import { Mail, Phone } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 interface EmployerAuthShellProps {
@@ -12,8 +13,7 @@ export function EmployerAuthShell({ children, title = "Akij Resource" }: Employe
       <header className="border-b border-[#eceef2] bg-white">
         <div className="mx-auto flex h-18 w-full max-w-310 items-center justify-between px-4 md:px-6">
           <Link href="/employer/login" className="leading-none">
-            <p className="text-[30px] font-black tracking-[-0.06em] text-[#3f3ca8] md:text-[38px]">AKJ</p>
-            <p className="-mt-2 text-[8px] font-semibold uppercase tracking-[0.22em] text-[#2f3543] md:text-[10px]">Resource</p>
+            <Image src="/logo.svg" alt="AKJ Resource" width={116} height={32} className="h-8 w-29 object-contain" priority />
           </Link>
           <p className="pr-6 text-[18px] font-semibold text-[#364253] md:pr-0 md:text-[44px]">{title}</p>
           <div className="w-10 md:w-30" />
