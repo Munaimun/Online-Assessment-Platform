@@ -115,52 +115,50 @@ npm run build
 
 ### MCP Integration
 
-Yes, I have worked with MCP concepts and tool-driven workflows.
-
-- Example MCPs used:
-	- Database/context MCPs for schema exploration and query execution
-	- Browser/devtools style MCP workflows for UI verification and behavior inspection
-- Work performed:
-	- Rapid context retrieval from project systems
-	- Structured, tool-assisted debugging loops
-	- Faster implementation-validation cycles
-- Outcome:
-	- Reduced manual context switching
-	- Better accuracy in code changes and diagnostics
-
-If introducing MCP ideas into this project, useful options would be:
-
-- Figma MCP for token extraction and component parity from design files
-- Chrome DevTools MCP for runtime performance, accessibility, and behavior-tracking verification
-- Supabase MCP for quickly moving from mock API to persistent exam/candidate/submission data
+- Have you worked with any MCP (Model Context Protocol)?
+	- Yes.
+- If yes: Which MCP did you use, what work did you perform, and what was accomplished?
+	- MCPs/Tooling workflows used: codebase/context tooling, browser/devtools-style workflows, and data exploration workflows.
+	- Work performed:
+		- Faster project-wide context lookup and implementation tracing.
+		- UI behavior checks (timers, forms, navigation, and interaction flow).
+		- Iterative debug-fix-verify cycles during feature polishing.
+	- Accomplished:
+		- Reduced time spent on manual searching and repeated checks.
+		- Improved implementation consistency and faster issue resolution.
+- If no: Describe an idea of how MCP could be used in this project.
+	- Not applicable because MCP workflows were already used.
+	- Additional useful ideas for this project:
+		- Figma MCP: map design tokens/components directly into UI implementation.
+		- Chrome DevTools MCP: automated responsiveness/performance/accessibility inspection.
+		- Supabase MCP: migrate mock APIs to persistent exam/candidate/submission tables.
 
 ### AI Tools for Development
 
-Recommended tools/processes:
-
-- GitHub Copilot: in-editor code generation and refactor acceleration
-- ChatGPT/Claude Code: design iteration, architecture critique, and edge-case discovery
-- AI-assisted workflow to speed delivery:
-	- Generate base modules and typed contracts
-	- Add manual review pass for readability and constraints
-	- Run lint/build/test loop after each milestone
+- Which AI tools or processes have you used or recommend to speed up frontend development?
+	- GitHub Copilot: in-editor coding, refactors, and repetitive UI changes.
+	- ChatGPT / Claude Code: architecture discussion, edge-case planning, and implementation refinement.
+	- Recommended process:
+		- Generate first pass with AI.
+		- Manually review UX, naming, and edge cases.
+		- Run lint/build and verify major user flows after each milestone.
 
 ### Offline Mode Strategy for Exam Continuity
 
-If a candidate loses internet during an exam:
-
-- Persist answers locally (IndexedDB/localStorage) every few seconds and on each change
-- Keep timer source-of-truth resilient:
-	- Use server-issued exam start timestamp
-	- Continue countdown locally from that timestamp if disconnected
-- Queue submission payload while offline
-- Auto-resume sync and submit when network returns
-- Show explicit offline banner and sync status
-- Keep anti-cheat events buffered with timestamps, then send on reconnect
+- How would you handle offline mode if a candidate loses internet during an exam?
+	- Save answers locally (IndexedDB preferred) on every change and at short intervals.
+	- Keep an offline-safe timer by storing exam start timestamp and elapsed time checkpoints.
+	- Queue pending submission and behavior events while offline.
+	- Detect reconnect, sync queued data, and submit automatically.
+	- Show clear offline/reconnecting status to the candidate.
+	- Keep server-side validation on final submit to prevent tampering.
 
 ## Deliverables Checklist
 
-- GitHub repository with full code: TODO - add repo URL
-- Live demo link in README: TODO - add deployment URL
-- Video walkthrough link in README: TODO - add video URL
+- GitHub repository with full code: https://github.com/Munaimun/Online-Assessment-Platform
+- README with setup instructions: Included in this file.
+- Completed answers to additional questions: Included in this file.
+- Live demo link: https://online-assessment-platform-six.vercel.app/
+- Video recording link: TODO - add your video recording URL
+- Bonus backend/API integration: Implemented via Next.js API routes and in-memory mock DB.
 

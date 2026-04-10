@@ -8,7 +8,7 @@ interface CandidateAuthShellProps {
 
 export function CandidateAuthShell({ children, title = "Akij Resource" }: CandidateAuthShellProps) {
   return (
-    <div className="min-h-screen bg-[#f4f5f7] text-[#354052]">
+    <div className="flex min-h-screen flex-col bg-[#f4f5f7] text-[#354052]">
       <header className="border-b border-[#eceef2] bg-white">
         <div className="mx-auto flex h-18 w-full max-w-310 items-center justify-between px-4 md:px-6">
           <Link href="/candidate/login" className="leading-none">
@@ -16,13 +16,13 @@ export function CandidateAuthShell({ children, title = "Akij Resource" }: Candid
             <p className="-mt-2 text-[8px] font-semibold uppercase tracking-[0.22em] text-[#2f3543] md:text-[10px]">Resource</p>
           </Link>
           <p className="pr-6 text-[18px] font-semibold text-[#364253] md:pr-0 md:text-[44px]">{title}</p>
-          <div className="w-10 md:w-[120px]" />
+          <div className="w-10 md:w-30" />
         </div>
       </header>
 
-      <div className="mx-auto w-full max-w-310 px-4 py-8 md:px-6 md:py-12">{children}</div>
+      <main className="mx-auto w-full max-w-310 flex-1 px-4 py-4 md:px-6 md:py-6">{children}</main>
 
-      <footer className="mt-10 bg-[#14083f] text-white">
+      <footer className="mt-auto bg-[#14083f] text-white">
         <div className="mx-auto flex w-full max-w-310 flex-col gap-4 px-4 py-5 md:h-21 md:flex-row md:items-center md:justify-between md:px-6 md:py-0">
           <div className="flex items-center gap-2 md:gap-3">
             <p className="text-[18px] leading-none md:text-[34px]">Powered by</p>

@@ -39,26 +39,26 @@ export default function EmployerLoginPage() {
 
   return (
     <EmployerAuthShell title="Akij Resource">
-      <div className="mx-auto w-142.75 max-w-130 md:max-w-190">
-        <h1 className="mb-6 text-center text-[42px] font-semibold text-[#364255] md:text-[52px]">Sign In</h1>
+      <div className="mx-auto w-full max-w-130 md:max-w-190">
+        <h1 className="mb-4 text-center font-semibold text-[#364255] md:text-2xl">Sign In</h1>
 
-        <section className="rounded-2xl border border-[#d8dde7] bg-white p-4 md:p-7">
-          <form className="space-y-5" onSubmit={form.handleSubmit((values) => mutation.mutate(values))}>
-            <div className="w-126.75">
-              <label htmlFor="email" className="mb-2 block text-[34px] font-medium text-[#4f596c] md:text-[24px]">
+        <section className="rounded-2xl border border-[#d8dde7] bg-white p-4 md:p-5">
+          <form className="space-y-4" onSubmit={form.handleSubmit((values) => mutation.mutate(values))}>
+            <div>
+              <label htmlFor="email" className="mb-1.5 block text-base font-medium text-[#4f596c] md:text-lg">
                 Email/ User ID
               </label>
               <input
                 id="email"
                 type="email"
                 placeholder="Enter your email/User ID"
-                className="h-12 w-full rounded-xl border border-[#d1d6df] px-4 text-[30px] text-[#354052] outline-none md:h-13 md:text-base"
+                className="h-10 w-full rounded-xl border border-[#d1d6df] px-4 text-sm text-[#354052] outline-none md:h-11 md:text-base"
                 {...form.register("email")}
               />
             </div>
 
-            <div className="w-126.75">
-              <label htmlFor="password" className="mb-2 block text-[34px] font-medium text-[#4f596c] md:text-[24px]">
+            <div>
+              <label htmlFor="password" className="mb-1.5 block text-base font-medium text-[#4f596c] md:text-lg">
                 Password
               </label>
               <div className="relative">
@@ -66,12 +66,12 @@ export default function EmployerLoginPage() {
                   id="password"
                   type="password"
                   placeholder="Enter your password"
-                  className="h-12 w-full rounded-xl border border-[#d1d6df] px-4 pr-11 text-[30px] text-[#354052] outline-none md:h-13 md:text-base"
+                  className="h-10 w-full rounded-xl border border-[#d1d6df] px-4 pr-11 text-sm text-[#354052] outline-none md:h-11 md:text-base"
                   {...form.register("password")}
                 />
                 <Eye size={18} className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#9ba4b3]" />
               </div>
-              <p className="mt-2 text-right text-[36px] font-semibold text-[#42516a] md:text-[24px]">Forget Password?</p>
+              <p className="mt-2 text-right text-sm font-semibold text-[#42516a] md:text-base">Forget Password?</p>
             </div>
 
             {mutation.isError ? (
@@ -81,7 +81,7 @@ export default function EmployerLoginPage() {
             <button
               type="submit"
               disabled={mutation.isPending}
-              className="h-12 w-126.75 rounded-xl bg-linear-to-r from-[#5d2ff0] to-[#6f3bf7] text-[36px] font-semibold text-white disabled:opacity-70 md:h-13 md:text-[32px]"
+              className="h-10 w-full rounded-xl bg-linear-to-r from-[#5d2ff0] to-[#6f3bf7] text-base font-semibold text-white disabled:opacity-70 md:h-11 md:text-lg"
             >
               {mutation.isPending ? "Signing in..." : "Sign In"}
             </button>
