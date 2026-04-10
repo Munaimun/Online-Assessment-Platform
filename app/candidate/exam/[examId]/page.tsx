@@ -98,9 +98,23 @@ export default function CandidateExamPage() {
   if (query.isLoading) {
     return (
       <CandidateTestShell centerTitle="Akij Resource">
-        <div className="space-y-4">
-          <div className="h-16 animate-pulse rounded-2xl bg-white" />
-          <div className="h-[28rem] animate-pulse rounded-2xl bg-white" />
+        <div className="mx-auto flex min-h-[60vh] max-w-3xl items-center justify-center px-4">
+          <div className="w-full rounded-3xl border border-[#dbe0e9] bg-white p-8 text-center shadow-[0_18px_50px_rgba(18,24,40,0.08)]">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#efeaff]">
+              <div className="h-7 w-7 animate-spin rounded-full border-4 border-[#cbbcff] border-t-[#5d2ff0]" />
+            </div>
+            <h2 className="mt-5 text-2xl font-semibold text-[#344154]">Loading exam</h2>
+            <p className="mt-2 text-sm text-[#63728a]">Preparing your test and restoring your session. Please wait a moment.</p>
+
+            <div className="mt-6 space-y-3 text-left">
+              <div className="h-4 w-24 rounded-full bg-[#e9edf4]" />
+              <div className="h-20 rounded-2xl bg-[#f6f8fc]" />
+              <div className="grid gap-3 md:grid-cols-2">
+                <div className="h-12 rounded-xl bg-[#f6f8fc]" />
+                <div className="h-12 rounded-xl bg-[#f6f8fc]" />
+              </div>
+            </div>
+          </div>
         </div>
       </CandidateTestShell>
     );
@@ -292,21 +306,27 @@ export default function CandidateExamPage() {
       </div>
 
       {timeoutOpen ? (
-        <div className="fixed inset-0 z-50 bg-black/45 p-4">
-          <div className="mx-auto mt-24 w-full max-w-2xl rounded-2xl bg-white p-6 text-center">
-            <div className="mx-auto mb-4 inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#2f8ae4] text-2xl text-white">
-              !
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/55 p-4 backdrop-blur-sm">
+          <div className="w-full max-w-xl overflow-hidden rounded-3xl bg-white shadow-[0_22px_70px_rgba(0,0,0,0.2)]">
+            <div className="h-2 bg-linear-to-r from-[#5d2ff0] via-[#7a56f4] to-[#2f8ae4]" />
+            <div className="p-6 text-center md:p-8">
+              <div className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-full bg-[#eff4ff] text-[#2f8ae4] shadow-inner">
+                <span className="text-3xl font-black leading-none">!</span>
+              </div>
+              <h3 className="mt-5 text-3xl font-semibold text-[#344154]">Timeout</h3>
+              <p className="mt-3 text-base leading-7 text-[#63728a] md:text-lg">
+                Dear Md. Naimur Rahman, your exam time has finished. Your submission has been saved and you can return to the dashboard.
+              </p>
+
+              <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
+                <Link
+                  href="/candidate/dashboard"
+                  className="inline-flex h-11 items-center justify-center rounded-xl bg-linear-to-r from-[#5d2ff0] to-[#6f3bf7] px-5 text-sm font-semibold text-white"
+                >
+                  Back to Dashboard
+                </Link>
+              </div>
             </div>
-            <h3 className="text-[32px] font-semibold text-[#344154]">Timeout!</h3>
-            <p className="mt-2 text-[22px] text-[#63728a]">
-              Dear Md. Naimur Rahman, Your exam time has been finished. Thank you for participating.
-            </p>
-            <Link
-              href="/candidate/dashboard"
-              className="mt-5 inline-flex h-11 items-center justify-center rounded-xl border border-[#d1d8e4] px-5 text-[18px] font-semibold text-[#364255]"
-            >
-              Back to Dashboard
-            </Link>
           </div>
         </div>
       ) : null}
